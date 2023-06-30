@@ -1,0 +1,46 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+
+<h1 class="mt-4">All Orders</h1>
+	{% if order %}
+	<div class="row mt-3">
+	  <table class="table">
+		<thead class="thead-light">
+		  <tr>
+			<th scope="col">Buyer Name</th>
+			<th scope="col">Address</th>
+			<th scope="col">Contact Number</th>
+			<th scope="col">Category Name</th>
+			<th scope="col">Product Name</th>
+			<th scope="col">Product Image</th>
+			<th scope="col">Quantity</th>
+			<th scope="col">Total Price</th>
+			<th scope="col">Status</th>
+			<th scope="col">Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for o in order %}
+		  <tr>
+			<td>{{o.User.FirstName}} {{o.User.LastName}}</td>
+			<td>{{o.User.Address}}, {{o.User.City}}, {{o.User.State}}, {{o.User.Zip}}</td>
+			<td>{{o.User.ContactNumber}}</td>
+			<td>{{o.Product.Category.Name}}</td>
+			<td>{{o.Product.Name}}</td>
+			<td><img src="{{o.Product.Image.url}}" alt="no pic" width="100px" height="120px"></td>
+			<td>{{o.Quantity}}</td>
+			<td>{{o.Total}}</td>
+			<td>{{o.Status}}</td>
+            {% if o.Status == 'Approved' %}
+            {% else %}
+			<td><a href="{% url 'toApproveOrder' o.id %}">Approve</a></td>
+            {% endif %}
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	</table>
+	</div>
+	{% else %}
+	No Product
+	{% endif %}
+{% endblock %}

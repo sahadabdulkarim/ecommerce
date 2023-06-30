@@ -1,0 +1,36 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+
+
+<h3 class="mt-4">All Buyer</h3>
+	{% if buyer %}
+	<div class="row mt-3">
+	  <table class="table">
+		<thead class="thead-light">
+		  <tr>
+			<th scope="col">Name</th>
+			<th scope="col">Contact</th>
+			<th scope="col">Email</th>
+			<th scope="col">City</th>
+			<th scope="col">State</th>
+			<th scope="col">Zip Code</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for b in buyer %}
+		  <tr>
+			<td>{{b.FirstName}} {{b.LastName}}</td>
+			<td>{{b.ContactNumber}}</td>
+			<td>{{b.Email}}</td>
+			<td>{{b.City}}</td>
+			<td>{{b.State}}</td>
+			<td>{{b.Zip}}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	</table>
+</div>
+	  {% else %}
+	  No Buyer
+	  {% endif %}
+{% endblock %}

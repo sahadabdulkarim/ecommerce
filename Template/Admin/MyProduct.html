@@ -1,0 +1,36 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+
+
+<a href="{% url 'toNewProduct' %}" type="button" class="btn btn-primary mt-4">New Product</a>
+
+<h1 class="mt-4">My Product</h1>
+	{% if product %}
+	  <table class="table">
+		<thead class="thead-light">
+		  <tr>
+			<th scope="col">Category Name</th>
+			<th scope="col">Name</th>
+			<th scope="col">Price</th>
+			<th scope="col">Quantity</th>
+			<th scope="col">Product Image</th>
+			
+		  </tr>
+		</thead>
+		<tbody>
+			{% for p in product %}
+		  <tr>
+			<td>{{p.Category.Name}}</td>
+			<td>{{p.Name}}</td>
+			<td>{{p.Price}}</td>
+			<td>{{p.Quantity}}</td>
+			<td><img src="{{p.Image.url}}" alt="no pic" width="100px" height="120px"></td>
+			
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	  </table>
+	  {% else %}
+	  No Product
+	  {% endif %}
+{% endblock %}

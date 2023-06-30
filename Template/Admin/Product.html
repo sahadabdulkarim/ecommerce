@@ -1,0 +1,36 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+
+
+
+<h1 class="mt-4">All Product</h1>
+	{% if product %}
+	<div class="row mt-3">
+	  <table class="table">
+		<thead class="thead-light">
+		  <tr>
+			<th scope="col">Category Name</th>
+			<th scope="col">Name</th>
+			<th scope="col">Price</th>
+			<th scope="col">Quantity</th>
+			<th scope="col">Product Image</th>
+			<th scope="col">Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for p in product %}
+		  <tr>
+			<td>{{p.Category.Name}}</td>
+			<td>{{p.Name}}</td>
+			<td>{{p.Price}}</td>
+			<td>{{p.Quantity}}</td>
+			<td><img src="{{p.Image.url}}" alt="no pic" width="100px" height="120px"></td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	</table>
+</div>
+	  {% else %}
+	  No Product
+	  {% endif %}
+{% endblock %}

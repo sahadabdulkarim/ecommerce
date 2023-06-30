@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<div class="container">
+  <form action="{% url 'loginAction' %}" method="post">
+    {% csrf_token %}
+    <h1 class="mt-5 col-md-6"><b>Login</b></h1>
+    {{msg}}
+    <div class="form-group mt-5 col-md-6">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" name="email" id="email" required>
+    </div>
+    <div class="form-group mt-5 col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" id="password" required>
+      <a href="#">Forgot password?</a>
+    </div>
+    <div class="form-group mt-5 col-md-6">
+      <button type="submit" class="btn btn-primary">LOGIN</button>
+    </div>
+  </form>
+  <div class="form-group mt-5 col-md-6">
+    <a href="#" class="btn btn-danger">Login With Google</a>
+    <span> <a href="#" class="btn btn-info">Login With Phone Number</a></span>
+  </div>
+  <div class="form-group mt-5 col-md-6">
+    <span> <a href="{% url 'toCreateAccount' %}" class="btn btn-warning">Create Account</a></span>
+  </div>
+
+
+
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+    <h1 class="mt-4">All Orders</h1>
+    {% if order %}
+        <div class="row mt-3">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Buyer Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Image</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for o in order %}
+                        <tr>
+                            <td>{{ o.Fname }} {{ o.lName }}</td>
+                            <td>{{ o.Address }}, {{ o.City }}, {{ o.State }}, {{ o.Zip }}</td>
+                            <td>{{ o.Number }}</td>
+                            <td>{{ o.Category }}</td>
+                            <td>{{ o.Name }}</td>
+                            <td>
+                                <img src="{{ o.Image }}" alt="no pic" width="100px" height="120px" />
+                            </td>
+                            <td>{{ o.Quantity }}</td>
+                            <td>{{ o.Total }}</td>
+                            <td>{{ o.Date }}</td>
+                            {% if o.Status == 'Dispatched' %}
+                                <td>Dispatched</td>
+                            {% else %}
+                                <td><a href="{% url 'updateOrder' o.id %}">Dispatch</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No Orders</p>
+    {% endif %}
+{% endblock %}

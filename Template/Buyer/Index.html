@@ -1,0 +1,59 @@
+{% extends 'Buyer/Base.html' %}
+{% block content %}
+<div class="app-table">
+	<div class="row">
+		{% if product %}
+		{% for p in product %}
+			<div class="col-3 mr-auto">
+				<div class="card mt-5" style="width: 14rem; border: brown 1px solid;">
+					<img class="card-img-top mx-auto mt-3" src="{{p.Image.url}}" alt="Card image cap"
+						style="width: 120px;" height="140px;">
+					<div class="card-body mx-auto">
+						<h5 class="card-title">{{p.Name}}</h5>
+						<p class="card-text">{{p.Category.Name}}</p>
+						<input type="hidden" id="hidden" value="{{p.id}}">
+						<p class="card-text">{{p.Price}}</p>
+						<p class="card-text">{{p.Quantity}}</p>
+						<button onclick="addToCart('{{p.id}}')" type="submit" class="btn btn-primary">Add To Cart</button>
+					</div>
+				</div>
+				</div>
+				{% endfor %}
+				{% else %}
+				Empty Product
+				{% endif %}
+			</div>
+</div>
+<div class="error"></div>
+<div class="table-output">
+	<div class="row table-body">
+	</div>
+</div>
+<script type="text/javascript">
+
+
+	
+
+
+	function addToCart(proId){
+		console.log(proId)
+		$.ajax({
+			url:"{% url 'toCartAction' %}",
+			data:{'product': proId},
+			method: 'get',
+			success:(response)=>{
+				alert(response)
+			}
+
+		})
+	}
+
+
+
+
+
+
+
+
+</script>
+{% endblock %}

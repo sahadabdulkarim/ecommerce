@@ -1,0 +1,22 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+		<h3 class="mt-5">All category</h3>
+			{% if category %}
+			  <table class="table mt-4">
+				<thead class="thead-light">
+				  <tr>
+					<th scope="col">Category Name</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for c in category %}
+				  <tr>
+					<td><a href="#">{{c.Name}}</a></td>
+				  </tr>
+				  {% endfor %}
+				</tbody>
+			  </table>
+			  {% else %}
+			  Empty Category
+			  {% endif %}
+{% endblock %}

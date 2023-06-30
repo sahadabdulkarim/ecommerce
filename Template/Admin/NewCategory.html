@@ -1,0 +1,31 @@
+{% extends 'Admin/Base.html' %}
+{% block content %}
+	<h3 class="mt-5">New Category</h3>
+	<form method="post" action="{% url 'categoryAction' %}">
+		{% csrf_token %}
+		<div class="from-group input-group mt-4 mb-3 col-md-5">
+			<input type="text" class="form-control" name="category" id="category" placeholder="Category Name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+			<div class="input-group-append form-group">
+			  <button class="btn btn-outline-info" type="submit">Button</button>
+			</div>
+		  </div>
+	  </form>
+	  {% if category %}
+			  <table class="table">
+				<thead class="thead-light">
+				  <tr>
+					<th scope="col">Category Name</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{% for c in category %}
+				  <tr>
+					<td><a href="#">{{c.Name}}</a></td>
+				  </tr>
+				  {% endfor %}
+				</tbody>
+			  </table>
+			  {% else %}
+			  Empty Category
+			  {% endif %}
+{% endblock %}

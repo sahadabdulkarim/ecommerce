@@ -1,0 +1,32 @@
+{% extends 'Buyer/Base.html' %}
+{% block content %}
+<h3 class="mt-4">Enter Delivery Address</h3>
+<form action="{% url 'confirmOrder' %}" method="POST">
+    {% csrf_token %}
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div>
+                <label for="">Address</label>
+                <input type="text" class="form-control" id="address" name="address">
+                <label for="">PIN CODE</label>
+                <input type="text" class="form-control" id="pincode" name="pincode">
+                <label for="">Mobile Number</label>
+                <input type="text" class="form-control" id="number" name="number">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="contailer mt-5 ml-5 checkout">
+                <h5>Total: {{total}}</h5>
+                <hr>
+                <div class="payment">
+                    <p>Payment Method</p>
+                    <label class="radio-inline">
+                        <input type="radio" name="radiobtn" value="COD" checked disabled> COD
+                    </label>
+                    <button class="btn btn-primary float-right" type="submit">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

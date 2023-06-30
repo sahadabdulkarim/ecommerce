@@ -1,0 +1,56 @@
+{% extends 'Buyer/Base.html' %}
+{% block content %}
+<h3 class="mt-4">My Orders</h3>
+{% if order %}
+	<table class="table mt-4">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">Item</th>
+				<th scope="col">Image</th>
+				<th scope="col">Price</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Date</th>
+				<th scope="col">Status</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for o in order %}
+			<tr>
+				<td>{{o.Product.Name}}</td>
+				<td><img src="{{o.Product.Image.url}}" alt="No_Image" width="80px" height="80px"></td>
+				<td><span id="total">{{o.Product.Price}}</span></td>
+				<td>
+					<span id="{{c.Product.id}}"> {{o.Quantity}} </span>
+				</td>
+                <td>{{o.Date}}</td>
+				<td>{{o.Status}}</td>
+
+			</tr>
+			{% endfor %}
+		</tbody>
+
+	</table>
+<hr>
+<div class="float-right pr-5">
+<h4 class="float-left mr-5"><b class="bg-info text-warning">Grand Total :</b> <span id="totalPrice">{{total}}</span></h4><br>
+</div>
+
+<h4 class="mt-4">Address Details</h4>
+{% for u in user %}
+<label for="">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{u.Address}}, {{u.City}}, {{u.State}}" disabled>
+                <label for="">PIN CODE</label>
+                <input type="text" class="form-control" id="pincode" name="pincode" value="{{u.Zip}}" disabled>
+                <label for="">Mobile Number</label>
+                <input type="text" class="form-control" id="number" name="number" value="{{u.ContactNumber}}" disabled>
+{% endfor %}
+
+
+	
+{% else %}
+Empty Order
+{% endif %}
+
+
+{% endblock %}
